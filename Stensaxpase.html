@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sten sax påse</title>
+    <link rel="stylesheet" href="sten.css">
+  </head>
+  <body>
+<h1>Sten sax påse?</h1>
+<div class="sten">
+  <button class="sten" onclick="Start(1)"><!-- Startar function när man klickar på knappen--> <img src ="Sten.png" alt ="sten">  </button>
+</div>
+
+<div class ="sax">
+<button class="sax" onclick="Start(2)"> <img src ="Sax.png" alt="Sax">  </button>
+</div>
+<div class="papper">
+  <button class="papper" onclick="Start(3)"> <img src ="Papper.png" alt ="papper">  </button>
+</div>
+<div class="lista">
+  <p id="result"> </p>
+  <p id="du"> </p>
+  <p id ="dat"></p>
+</div>
+
+<audio id ="lose">
+      <source src="nanimp3.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <audio id ="win">
+        <source src="omae_wa_mou_shinderu.mp3" type="audio/mpeg">
+    </audio> <!-- Koden som man väljer vad för ljud man vill ha-->
+
+    <audio id ="draw">
+          <source src="hog11.mp3" type="audio/mpeg">
+
+        </audio>
+
+    <script>
+
+function Start(X){ // (x) ändras till den vilken knapp det är som du klickar på
+  var y = document.getElementById("lose");
+  var b = document.getElementById("win"); //sätter in ljudet i en variable så du kan spela upp den sen.
+  var c = document.getElementById("draw")
+  var Användare = X
+  var dator = Math.floor(Math.random() * 3) + 1;
+
+  if (Användare == dator) { //Gör delen under här när det är like
+    document.getElementById("result").innerHTML = "Lika";
+    c.play();
+    if (Användare == 1){
+      document.getElementById("du").innerHTML = "Du Valde sten";
+      document.getElementById("dat").innerHTML = "Datorn valde sten";
+    }
+    if (Användare == 2) {
+      document.getElementById("du").innerHTML = "Du valde Sax";
+      document.getElementById("dat").innerHTML = "Datorn valde Sax";
+    }
+    if (Användare == 3) {
+      document.getElementById("du").innerHTML = "Du valde Påse";
+      document.getElementById("dat").innerHTML = "Datorn valde Påse";
+    } //här avslutas Lika
+
+  }
+  else if (Användare == 1) { //Om du har valt sten gör detta
+    if (dator == 2) {
+      document.getElementById("result").innerHTML = "Du förlora";
+      document.getElementById("du").innerHTML = "Du valde sten";
+      document.getElementById("dat").innerHTML = "Datorn valde sax";
+      y.play(); //spelar ljud
+    }
+    else{
+        document.getElementById("result").innerHTML = "Du vann";
+        document.getElementById("du").innerHTML = "Du valde sten";
+        document.getElementById("dat").innerHTML = "Datorn valde sax";
+          b.play(); // spelar ljud
+    }
+// här avsluytas sten
+  }
+  // Om du valde sax
+  else if (Användare == 2) {
+    if (dator == 1) { //om datorn valde sten
+        document.getElementById("result").innerHTML = "Du förlora";
+        document.getElementById("du").innerHTML = "Du valde sax";
+        document.getElementById("dat").innerHTML = "Datorn valde sten";
+        y.play(); //spelar ljud
+    }
+    else{
+      document.getElementById("result").innerHTML = "Du vann";
+      document.getElementById("du").innerHTML = "Du valde sax";
+      document.getElementById("dat").innerHTML = "Datorn valde papper";
+        b.play();
+    }
+  } // avslutas sax delen
+  else{ // Om du har valt påse
+    if (dator == 2) { //om datorn valde sax
+        document.getElementById("result").innerHTML = "Du förlora";
+        document.getElementById("du").innerHTML = "Du valde papper";
+        document.getElementById("dat").innerHTML = "Datorn valde sax";
+        y.play();
+    }
+    else{
+      document.getElementById("result").innerHTML = "Du vann";
+      document.getElementById("du").innerHTML = "Du valde papper";
+      document.getElementById("dat").innerHTML = "Datorn valde sten";
+        b.play();
+    }
+  } //här avslutas påse delen
+}//slutar function
+    </script>
+
+  </body>
+</html>
